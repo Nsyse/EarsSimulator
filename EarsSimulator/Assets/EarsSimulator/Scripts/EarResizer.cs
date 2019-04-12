@@ -30,12 +30,7 @@ public class EarResizer : MonoBehaviour
 
     public void SetEarsSize(float earSizes)
     {
-        SetGOScale(leftEar, -earSizes);
-        SetGOScale(rightEar, earSizes);
-    }
-
-    private void SetGOScale(GameObject o, float size)
-    {
-        o.transform.localScale = new Vector3(size, Mathf.Abs(size), 1);
+        Utils.SetGOScale(leftEar, -earSizes);
+        Utils.SetGOScale(rightEar, earSizes);
     }
 }
