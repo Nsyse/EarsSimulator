@@ -31,7 +31,7 @@ public class GlitchDespawner : MonoBehaviour
         {
             if (newOpacity < 0)
             {
-                ScreenFucker.FireOnGlitchDespawned();
+                AAAAAAAAAAAAAAAAAAA.FireOnGlitchDespawned();
                 Destroy(gameObject);
             }
             fadedDuring += Time.deltaTime;

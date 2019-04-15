@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScreenFucker : MonoBehaviour
+public class AAAAAAAAAAAAAAAAAAA : MonoBehaviour
 {
     [SerializeField] private GameObject GlitchArtifact;
     [SerializeField] private GameObject Scream;
