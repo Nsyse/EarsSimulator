@@ -7,6 +7,9 @@ public class CharacterMover : MonoBehaviour
     [SerializeField] private float CharacterSpeed;
 
     private Rigidbody2D rb = null;
+    private Animator anim = null;
+
+    private Vector2 MovementDirection = new Vector2();
     
     private bool GoingUp = false;
     private bool GoingDown = false;
@@ -15,6 +18,7 @@ public class CharacterMover : MonoBehaviour
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -26,41 +30,16 @@ public class CharacterMover : MonoBehaviour
 
     private void SetAnimationFlags()
     {
-        if (GoingUp)
-        {
-            //Set Going up animation flag
-        }
-        else if(GoingDown)
-        {
-            //Set Going up animation flag
-        }
-        else if(GoingRight)
-        {
-            //Set Going right animation flag
-        }
+        bool isWalking = MovementDirection.magnitude != 0;
+        
+        anim.SetBool("Walking", isWalking);
+        anim.SetFloat("WalkRight", MovementDirection.x);
+        anim.SetFloat("WalkUpDown", MovementDirection.y);
     }
 
     private void Move()
     {
-        Vector3 movementDirection = new Vector3();
-
-        if (GoingUp)
-        {
-            movementDirection += Vector3.up;
-        }
-
-        if (GoingDown)
-        {
-            movementDirection += Vector3.down;
-        }
-        if (GoingRight)
-        {
-            movementDirection += Vector3.right;
-        }
-        
-        movementDirection.Normalize();
-
-        rb.velocity = movementDirection * CharacterSpeed;
+        rb.velocity = MovementDirection * CharacterSpeed;
     }
 
     private void ReadMoveInputs()
@@ -74,6 +53,24 @@ public class CharacterMover : MonoBehaviour
             GoingUp = false;
             GoingDown = false;
         }
+        
+        MovementDirection = new Vector2();
+
+        if (GoingUp)
+        {
+            MovementDirection += Vector2.up;
+        }
+
+        if (GoingDown)
+        {
+            MovementDirection += Vector2.down;
+        }
+        if (GoingRight)
+        {
+            MovementDirection += Vector2.right;
+        }
+        
+        MovementDirection.Normalize();
     }
 
     private bool RegisterInput(KeyCode keyCode)
