@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/EarsSimulator/_Scenes/SplashScreen.unity
+    guid: b5bdf473d81290f47908f9b4b5edbb93
   m_configObjects: {}
