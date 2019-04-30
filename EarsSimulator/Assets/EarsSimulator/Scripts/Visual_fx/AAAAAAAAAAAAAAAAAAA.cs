@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 
 public class AAAAAAAAAAAAAAAAAAA : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class AAAAAAAAAAAAAAAAAAA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A) && NumberOfHoles < MaxHoleQty)
+        if (Input.GetKey(KeyCode.A))
         {
             SpawnGlitchSquare();
         }
@@ -83,7 +84,9 @@ public class AAAAAAAAAAAAAAAAAAA : MonoBehaviour
 
     private void CrashGame()
     {
-        Debug.Log("Please crash");
+        //Debug.Log("Please crash");
+        Application.Quit();
+        //UnityEngine.Diagnostics.Utils.ForceCrash(ForcedCrashCategory.FatalError);
     }
 
     private Vector3 RandomScreenPosition()

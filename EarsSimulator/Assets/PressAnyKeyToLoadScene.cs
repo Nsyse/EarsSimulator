@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PressAnyKeyToLoadScene : MonoBehaviour
 {
@@ -8,8 +9,7 @@ public class PressAnyKeyToLoadScene : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            Debug.Log("Quit requested");
-            Application.Quit();
+            SceneManager.LoadScene("CustomizationScreen");
         }
     }
 }
