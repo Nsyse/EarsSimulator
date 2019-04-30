@@ -2,6 +2,22 @@ using UnityEngine;
 
 static internal class Utils
 {
+ 
+    public static string GetGOPath(Transform transform)
+    {
+        /*
+         * From :
+         * https://answers.unity.com/questions/8500/how-can-i-get-the-full-path-to-a-gameobject.html
+         */
+        string path = transform.name;
+        while (transform.parent != null)
+        {
+            transform = transform.parent;
+            path = transform.name + "/" + path;
+        }
+        return path;
+    }
+    
     public static float ChooseRandomOffset(float minOffset, float maxOffset)
     {
         float offset = Random.Range((float) minOffset, maxOffset);

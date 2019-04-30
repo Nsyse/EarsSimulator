@@ -5,11 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class PressAnyKeyToLoadScene : MonoBehaviour
 {
+    private bool alreadyLoading = false;
     private void Update()
     {
-        if (Input.anyKey)
+        if (Input.anyKey && !alreadyLoading)
         {
-            SceneManager.LoadScene("CustomizationScreen");
+            alreadyLoading = true;
+            StartGame();
         }
+    }
+
+    private void StartGame()
+    {
+        SceneManager.LoadScene(SceneNames.FadeScreen);
+        SceneManager.LoadScene(SceneNames.Game, LoadSceneMode.Additive);
     }
 }
