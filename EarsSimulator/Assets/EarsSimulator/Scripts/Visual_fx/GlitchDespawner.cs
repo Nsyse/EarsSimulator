@@ -2,51 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlitchDespawner : MonoBehaviour
+public class GlitchDespawner : VfxDespawner
 {
-
-    [SerializeField] private float FadeDuration = 1;
-
-    private float fadedDuring = 0;
-    
-    private SpriteRenderer Renderer;
-
-    private void OnEnable()
+    protected override bool ShouldntDespawn()
     {
-        Renderer = GetComponent<SpriteRenderer>();
+        return Input.GetKey(KeyCode.A);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void FireOnDespawn()
     {
-        float currentOpacity = Renderer.color.a;
-        float newOpacity = currentOpacity;
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            newOpacity = 1;
-            fadedDuring = 0;
-        }
-        else
-        {
-            if (newOpacity < 0)
-            {
-                AAAAAAAAAAAAAAAAAAA.FireOnGlitchDespawned();
-                Destroy(gameObject);
-            }
-            fadedDuring += Time.deltaTime;
-
-            if (fadedDuring > 1)
-            {
-                fadedDuring = 1;
-            }
-            
-            newOpacity -= Utils.MapToQuadReflection(fadedDuring);
-        
-            Color newColor = Renderer.color;
-            newColor.a = newOpacity;
-
-            Renderer.color = newColor;
-        }
+        AAAAAAAAAAAAAAAAAAA.FireOnGlitchDespawned();
     }
 }

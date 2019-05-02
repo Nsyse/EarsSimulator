@@ -6,8 +6,9 @@ using UnityEngine.Diagnostics;
 public class AAAAAAAAAAAAAAAAAAA : MonoBehaviour
 {
     [SerializeField] private GameObject GlitchArtifact;
-    [SerializeField] private GameObject Scream;
 
+    [SerializeField] private ScreamSlot ScreamController;
+    
     public delegate void GlitchDespawned();
 
     public static event GlitchDespawned OnGlitchDespawned;
@@ -39,35 +40,18 @@ public class AAAAAAAAAAAAAAAAAAA : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             SpawnGlitchSquare();
-        }
-
-        if (NumberOfHoles == 0)
-        {
-            HideScream();
+            
+            ScreamController.StartScreaming();
         }
         else
         {
-            UpdateScream();
+            ScreamController.StopScreaming();
         }
         
         if (NumberOfHoles>=MaxHoleQty)
         {
             CrashGame();
         }
-    }
-
-    private void HideScream()
-    {
-        Scream.SetActive(false);
-    }
-
-    private void UpdateScream()
-    {
-        Scream.SetActive(true);
-        
-        Debug.Log("test");
-        
-        Utils.SetGOScale(Scream, Utils.MapToQuad(NumberOfHoles/((float)MaxHoleQty)));
     }
 
     public void DecrementGlitchCount()
