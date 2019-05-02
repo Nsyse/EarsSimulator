@@ -75,7 +75,11 @@ public class ParallaxGroupSlipper : MonoBehaviour
             //Move up at given speed.
             float targetPosiY = (pair.Key.transform.position + Vector3.up * pair.Value * Time.deltaTime).y;
 
-            if (targetPosiY > 0)
+            if (targetPosiY > 0 && pair.Value > 0)
+            {
+                targetPosiY = 0;
+            }
+            else if (targetPosiY < 0 && pair.Value < 0)
             {
                 targetPosiY = 0;
             }
